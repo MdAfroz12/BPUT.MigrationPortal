@@ -1,0 +1,187 @@
+﻿@model List<BPUT.MigrationPortal.Models.MigrationRecordVM>
+@{
+    var colleges = ViewBag.Colleges as List<BPUT.MigrationPortal.Models.CollegeOptionVM>;
+}
+
+<style>
+    .rp-page {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .rp-filter {
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .rp-filter-row {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: end;
+    }
+
+    .rp-field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+        .rp-field label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .rp-field input, .rp-field select {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+    .rp-btn {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 9px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .rp-btn:hover {
+            background: #0b5ed7;
+        }
+
+    .rp-print-btn {
+        background: #198754;
+        color: #fff;
+        border: none;
+        padding: 9px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .rp-print-btn:hover {
+            background: #157347;
+        }
+
+    .rp-table-wrap {
+        overflow-x: auto;
+        border-radius: 8px;
+        border: 1px solid #e5e5e5;
+        background: #fff;
+    }
+
+    .rp-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1000px;
+    }
+
+        .rp-table thead th {
+            background: #f1f4f9;
+            text-align: left;
+            padding: 10px 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .rp-table tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+    @@media print {
+        .rp-filter, .no-print {
+            display: none !important;
+        }
+    }
+</style>
+
+<div class="rp-page">
+    <div class="rp-filter">
+        <h4>Migration Report</h4>
+
+        <form asp-controller="Migration" asp-action="MigrationReport" method="post">
+            <div class="rp-filter-row">
+                <div class="rp-field">
+                    <label>From Date</label>
+                    <input type="date" name="fromDate" value="@ViewBag.FromDate" required />
+                </div>
+                <div class="rp-field">
+                    <label>To Date</label>
+                    <input type="date" name="toDate" value="@ViewBag.ToDate" required />
+                </div>
+                <div class="rp-field">
+                    <label>College</label>
+                    <select name="collegeCode">
+                        <option value="ALL">All College</option>
+                        @if (colleges != null)
+                        {
+                            foreach (var c in colleges)
+                            {
+                                var selected = (ViewBag.SelectedCollege != null && ViewBag.SelectedCollege == c.CollegeCode) ? "selected" : "";
+                                <option value="@c.CollegeCode" selected="@(selected == "selected")">@c.CollegeCode-@c.CollegeName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="rp-field">
+                    <button type="submit" class="rp-btn">Submit</button>
+                </div>
+                <div class="rp-field">
+                    <button type="button" class="rp-print-btn no-print" onclick="window.print()">🖨 Print</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @if (Model.Count > 0)
+    {
+        <div class="rp-table-wrap">
+            <table class="rp-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Data Source</th>
+                        <th>RegNo</th>
+                        <th>Student Name</th>
+                        <th>College Code</th>
+                        <th>College Name</th>
+                        <th>Certificate No</th>
+                        <th>Migration Issue Date</th>
+                        <th>Migration Received Date</th>
+                        <th>Duplicate Issue Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>@r.SNo</td>
+                            <td>@r.DataSource</td>
+                            <td>@r.RegNo</td>
+                            <td>@r.StudentName</td>
+                            <td>@r.CollegeCode</td>
+                            <td>@r.CollegeName</td>
+                            <td>@r.CertificateNo</td>
+                            <td>@r.MigrationIssueDate?.ToString("dd-MM-yyyy")</td>
+                            <td>@r.MigrationReceivedDate?.ToString("dd-MM-yyyy")</td>
+                            <td>@r.DuplicateIssueDate?.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

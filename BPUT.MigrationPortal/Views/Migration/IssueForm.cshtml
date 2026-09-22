@@ -1,0 +1,18 @@
+﻿@model BPUT.MigrationPortal.Models.MigrationRecordVM
+
+<link rel="stylesheet" href="~/css/migration.css" />
+
+<div class="migration-search-wrapper">
+    <h4>Issue Migration — @Model.StudentName</h4>
+
+    <form asp-controller="Migration" asp-action="Issue" method="post" class="issue-form">
+        <input type="hidden" name="regNo" value="@Model.RegNo" />
+
+        <div class="form-row">
+            <label>Date of Issue</label>
+            <input type="date" name="issueDate" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Generate & Print</button>
+    </form>
+</div>

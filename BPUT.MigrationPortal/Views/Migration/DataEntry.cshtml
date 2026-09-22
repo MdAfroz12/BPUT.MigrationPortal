@@ -1,0 +1,442 @@
+﻿<style>
+    .de-page {
+        max-width: 1100px;
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .de-header {
+        background: linear-gradient(135deg, #0d6efd, #084298);
+        color: #fff;
+        padding: 22px 28px;
+        border-radius: 10px 10px 0 0;
+    }
+
+        .de-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .de-header p {
+            margin: 4px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+    .de-body {
+        background: #fff;
+        border: 1px solid #e2e2e2;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .de-table-wrap {
+        overflow-x: auto;
+        border-radius: 8px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .de-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 860px;
+    }
+
+        .de-table thead th {
+            background: #f1f4f9;
+            color: #333;
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .de-table tbody td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .de-table tbody tr:hover {
+            background: #f9fbff;
+        }
+
+    .de-input, .de-select {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+        .de-input:focus, .de-select:focus {
+            outline: none;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13,110,253,0.15);
+        }
+
+    .de-add-btn {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+
+        .de-add-btn:hover {
+            background: #0b5ed7;
+        }
+
+    .de-print-btn {
+        display: inline-block;
+        background: #198754;
+        color: #fff;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .de-print-btn:hover {
+            background: #157347;
+            color: #fff;
+        }
+
+    .de-remove-btn {
+        background: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .de-remove-btn:hover {
+            background: #bb2d3b;
+        }
+
+    .de-bulk-btn {
+        background: #6610f2;
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .de-bulk-btn:hover {
+            background: #5109c9;
+        }
+
+    .de-not-found {
+        color: #c0392b;
+        font-weight: 600;
+    }
+
+    .de-issued-red {
+        background: #dc3545;
+        color: #000;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 8px 10px;
+        border-radius: 6px;
+    }
+
+    .de-dup-btn {
+        background: #fd7e14;
+        color: #fff;
+        border: none;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+        .de-dup-btn:hover {
+            background: #dc6502;
+        }
+
+    /* ---------- Responsive: mobile pe cards jaisa dikhega ---------- */
+    @@media (max-width: 700px) {
+        .de-page {
+            margin: 15px auto;
+            padding: 0 8px;
+        }
+
+        .de-header {
+            padding: 16px 18px;
+            border-radius: 10px 10px 0 0;
+        }
+
+            .de-header h2 {
+                font-size: 19px;
+            }
+
+        .de-body {
+            padding: 14px;
+        }
+
+        .de-table, .de-table thead, .de-table tbody, .de-table th, .de-table td, .de-table tr {
+            display: block;
+        }
+
+            .de-table thead {
+                display: none;
+            }
+
+            .de-table tbody tr {
+                border: 1px solid #e2e2e2;
+                border-radius: 8px;
+                margin-bottom: 14px;
+                padding: 10px 12px;
+            }
+
+            .de-table tbody td {
+                border: none;
+                padding: 6px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .de-table tbody td::before {
+                    content: attr(data-label);
+                    font-weight: 700;
+                    color: #555;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    flex-shrink: 0;
+                }
+
+        .de-table {
+            min-width: 0;
+        }
+    }
+</style>
+
+<div class="de-page">
+    <div class="de-header">
+        <h2>Migration Certificate</h2>
+        <p>Select source, enter Reg No, and generate certificates</p>
+        <a asp-controller="Migration" asp-action="MigrationReport" style="display:inline-block; margin-top:10px; background:#fff; color:#0d6efd; padding:8px 18px; border-radius:6px; font-weight:600; text-decoration:none; font-size:14px;">📊 View Report</a>
+    </div>
+
+    <div class="de-body">
+        <div class="de-table-wrap">
+            <table class="de-table" id="entryTable">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Source</th>
+                        <th>RegNo</th>
+                        <th>Name</th>
+                        <th>College Code</th>
+                        <th>College Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="rowsBody"></tbody>
+            </table>
+        </div>
+
+        <div style="margin-top:18px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button type="button" class="de-add-btn" onclick="addRow()">+ Add Student</button>
+
+            <label style="font-size:14px; display:flex; align-items:center; gap:6px;">
+                Issue Date (for all):
+                <input type="date" id="bulkIssueDate" class="de-input" style="width:auto;" />
+            </label>
+
+            <button type="button" class="de-bulk-btn" onclick="bulkPrint()">🖨 Bulk Print All</button>
+        </div>
+
+        <form id="bulkForm" action="/Migration/BulkPrint" method="post" target="_blank" style="display:none;"></form>
+    </div>
+</div>
+
+<script>
+    let rowCounter = 0;
+
+    function addRow() {
+        rowCounter++;
+        const tbody = document.getElementById('rowsBody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td data-label="S.No" class="snoCell">${rowCounter}</td>
+            <td data-label="Source">
+         <select class="de-select srcSelect">
+        <option value="Degree" selected>Degree</option>
+        <option value="Admission">Admission</option>
+        </select>
+            </td>
+            <td data-label="RegNo">
+                <input type="text" class="de-input regInput" onblur="checkRow(this)" />
+            </td>
+            <td data-label="Name" class="nameCell"></td>
+            <td data-label="College Code" class="codeCell"></td>
+            <td data-label="College Name" class="collegeCell"></td>
+            <td data-label="Status" class="statusCell"></td>
+            <td data-label="Action" class="actionCell">
+                <button type="button" class="de-remove-btn" onclick="removeRow(this)">Remove</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    function removeRow(btn) {
+        const tr = btn.closest('tr');
+        tr.remove();
+        renumberRows();
+    }
+
+    function renumberRows() {
+        const rows = document.querySelectorAll('#rowsBody tr');
+        rows.forEach((row, i) => {
+            row.querySelector('.snoCell').textContent = i + 1;
+        });
+        rowCounter = rows.length;
+    }
+
+    async function checkRow(input) {
+        const tr = input.closest('tr');
+        const regNo = input.value.trim();
+        const dataSource = tr.querySelector('.srcSelect').value;
+
+        const nameCell = tr.querySelector('.nameCell');
+        const codeCell = tr.querySelector('.codeCell');
+        const collegeCell = tr.querySelector('.collegeCell');
+        const statusCell = tr.querySelector('.statusCell');
+        const actionCell = tr.querySelector('.actionCell');
+
+        nameCell.textContent = '';
+        codeCell.textContent = '';
+        collegeCell.textContent = '';
+        statusCell.innerHTML = '';
+
+        if (!regNo) return;
+
+        const response = await fetch(`/Migration/CheckStatus?dataSource=${encodeURIComponent(dataSource)}&regNo=${encodeURIComponent(regNo)}`);
+        const data = await response.json();
+
+        if (data.found === false && data.exists === false) {
+            statusCell.innerHTML = '<span class="de-not-found">Data not Available</span>';
+            return;
+        }
+
+        nameCell.textContent = data.studentName;
+        codeCell.textContent = data.collegeCode;
+        collegeCell.textContent = data.collegeName;
+
+           if (data.issued) {
+        let html = `<div class="de-issued-red">Cert No: ${data.certificateNo}<br/>Date: ${data.issueDate}`;
+        if (data.duplicateDate) {
+            html += `<br/>Duplicate Issued: ${data.duplicateDate}`;
+        }
+        html += `</div>`;
+        statusCell.innerHTML = html;
+
+        actionCell.innerHTML = `
+            <button type="button" class="de-remove-btn" onclick="removeRow(this)">Remove</button>
+            <label style="display:flex; align-items:center; gap:5px; font-size:13px; margin-top:8px;">
+                <input type="checkbox" class="dupCheck" onchange="toggleDup(this)" /> IsDuplicate
+            </label>
+            <div class="dupControls" style="display:none; margin-top:6px;">
+                <input type="date" class="de-input dupDate" style="width:140px;" />
+                <button type="button" class="de-dup-btn" style="margin-top:6px;"
+                        onclick="printDuplicate(this, '${dataSource}', '${regNo}')">Print Certificate</button>
+            </div>
+        `;
+    } else {
+            const url = `/Migration/GoToPrint?dataSource=${encodeURIComponent(dataSource)}&regNo=${encodeURIComponent(regNo)}`
+                + `&studentName=${encodeURIComponent(data.studentName)}`
+                + `&collegeCode=${encodeURIComponent(data.collegeCode)}`
+                + `&collegeName=${encodeURIComponent(data.collegeName)}`;
+
+            statusCell.innerHTML = `<a href="${url}" class="de-print-btn">Print Certificate</a>`;
+            actionCell.innerHTML = `<button type="button" class="de-remove-btn" onclick="removeRow(this)">Remove</button>`;
+        }
+    }
+
+    function toggleDup(checkbox) {
+        const controls = checkbox.closest('td').querySelector('.dupControls');
+        controls.style.display = checkbox.checked ? 'block' : 'none';
+    }
+
+    function printDuplicate(btn, dataSource, regNo) {
+        const dateInput = btn.closest('.dupControls').querySelector('.dupDate');
+        if (!dateInput.value) {
+            alert('Pehle Date select karo.');
+            return;
+        }
+
+        const url = `/Migration/IssueDuplicate?regNo=${encodeURIComponent(regNo)}&duplicateDate=${dateInput.value}`;
+        window.open(url, '_blank');
+    }
+
+    function bulkPrint() {
+        const issueDate = document.getElementById('bulkIssueDate').value;
+        if (!issueDate) {
+            alert('Please Select a Date');
+            return;
+        }
+
+        const rows = document.querySelectorAll('#rowsBody tr');
+        const form = document.getElementById('bulkForm');
+        form.innerHTML = '';
+
+        let count = 0;
+        rows.forEach(row => {
+            const regNo = row.querySelector('.regInput').value.trim();
+            const dataSource = row.querySelector('.srcSelect').value;
+            if (!regNo) return;
+
+            count++;
+
+            const inp1 = document.createElement('input');
+            inp1.type = 'hidden';
+            inp1.name = 'regNos';
+            inp1.value = regNo;
+            form.appendChild(inp1);
+
+            const inp2 = document.createElement('input');
+            inp2.type = 'hidden';
+            inp2.name = 'dataSources';
+            inp2.value = dataSource;
+            form.appendChild(inp2);
+        });
+
+        if (count === 0) {
+            alert('Koi RegNo bhara hua nahi mila.');
+            return;
+        }
+
+        const dateInp = document.createElement('input');
+        dateInp.type = 'hidden';
+        dateInp.name = 'issueDate';
+        dateInp.value = issueDate;
+        form.appendChild(dateInp);
+
+        form.submit();
+    }
+
+    addRow();
+</script>

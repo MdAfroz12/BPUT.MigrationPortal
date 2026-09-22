@@ -1,0 +1,97 @@
+﻿@model BPUT.MigrationPortal.Models.MigrationRecordVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Print on Hardcopy</title> 
+    <style>
+        :root {
+            --page-width: 21cm;
+            --page-height: 15cm;
+            --certno-left: 16cm;
+            --certno-top: 4.4cm;
+            --para-left: 2cm;
+            --para-top: 6cm;
+            --para-width: 15cm;
+            --para-height: 4cm;
+            --date-left: 2.5cm;
+            --date-top: 12.8cm;
+        }
+
+        @@page {
+            size: 21cm 15cm;
+            margin: 0;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: var(--page-width);
+            height: var(--page-height);
+        }
+
+        .print-page {
+            position: relative;
+            width: var(--page-width);
+            height: var(--page-height);
+        }
+
+        .cert-no {
+            position: absolute;
+            left: var(--certno-left);
+            top: var(--certno-top);
+            font-size: 11pt;
+            font-weight: 700;
+            font-family: Calibri, sans-serif;
+        }
+
+        .paragraph {
+            position: absolute;
+            left: var(--para-left);
+            top: var(--para-top);
+            width: var(--para-width);
+            height: var(--para-height);
+            font-size: 14pt;
+            line-height: 1.5;
+            text-align: justify;
+            font-family: Calibri, sans-serif;
+        }
+
+        .date-text {
+            position: absolute;
+            left: var(--date-left);
+            top: var(--date-top);
+            font-size: 10pt;
+            font-weight: 600;
+            font-family: Calibri, sans-serif;
+        }
+
+        .toolbar {
+            padding: 15px;
+        }
+
+        @@media print {
+            .toolbar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <button onclick="window.print()">Print on Hardcopy</button>
+        <p style="font-size:12px;color:#666;">Printer me "Actual Size / 100%" select karna, "Fit to page" nahi.</p>
+    </div>
+    <div class="print-page">
+        <div class="cert-no">@Model.CertificateNo</div>
+        <div class="paragraph">
+            <strong>@Model.StudentName?.ToUpper()</strong>, University Registration No <strong>@Model.RegNo</strong> of <strong>@Model.CollegeName?.ToUpper()</strong> is informed that this University has no objection to his / her migrating to any other University / Institute for further studies.
+        </div>
+        <div class="date-text">@Model.MigrationIssueDate?.ToString("dd.MM.yyyy")</div>
+    </div>
+</body>
+</html>

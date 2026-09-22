@@ -1,0 +1,326 @@
+﻿/* wwwroot/css/migration.css */
+
+.migration-search-wrapper {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+    .form-row label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: #fff;
+}
+
+.report-toolbar {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.report-box {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    padding: 25px;
+    border: 1px solid #333;
+    background: #fff;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+    .report-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+        .report-table td:first-child {
+            font-weight: 600;
+            width: 35%;
+            background: #f8f8f8;
+        }
+
+.issue-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.date-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 600;
+}
+
+/* ---------- Certificate ---------- */
+
+.certificate-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.certificate-box {
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+    background: #fdfaf7;
+    position: relative;
+    border: 10px solid transparent;
+    border-image: repeating-linear-gradient( 45deg, #c48bb0, #c48bb0 6px, #e8d5dd 6px, #e8d5dd 12px ) 20;
+    outline: 2px solid #7b3f61;
+    outline-offset: -18px;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #7b3f61;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    margin: 0 auto 10px;
+}
+
+.certificate-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.certificate-header h3 {
+    margin: 2px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.certificate-header h4 {
+    margin-top: 10px;
+    letter-spacing: 2px;
+    color: #7b3f61;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 6px 0;
+}
+
+.certificate-number {
+    text-align: right;
+    background: #eef6f6;
+    padding: 8px 14px;
+    margin: 15px 0;
+    display: inline-block;
+    float: right;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.certificate-body {
+    clear: both;
+    margin-top: 60px;
+}
+
+    .certificate-body p {
+        font-size: 16px;
+        line-height: 1.9;
+        text-align: justify;
+        color: #222;
+    }
+
+.certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 70px;
+    font-size: 14px;
+}
+
+.signature-line {
+    width: 120px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 5px;
+}
+
+.signature-block {
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .report-box {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .report-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .issue-form {
+        gap: 10px;
+    }
+
+    .certificate-box {
+        padding: 20px;
+        outline-offset: -10px;
+    }
+
+    .certificate-footer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .certificate-number {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .certificate-body {
+        margin-top: 20px;
+    }
+    .migration-search-wrapper {
+        margin: 10px;
+    }
+
+    .report-table td {
+        font-size: 12px;
+    }
+}
+
+/* wwwroot/css/migration.css me print section ko is se REPLACE karo */
+
+/* ---------- Print ---------- */
+@media print {
+    @page {
+        size: 15cm 21cm;
+        margin: 0.5cm;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 15cm;
+        height: 21cm;
+    }
+
+    .certificate-wrapper {
+        padding: 0;
+        display: block;
+    }
+
+    .certificate-box {
+        max-width: 14cm;
+        width: 14cm;
+        margin: 0 auto;
+        padding: 15px;
+        outline-offset: -10px;
+        border-width: 6px;
+        box-sizing: border-box;
+        page-break-inside: avoid;
+    }
+
+    .certificate-header h2 {
+        font-size: 15px;
+    }
+
+    .certificate-header h3 {
+        font-size: 12px;
+    }
+
+    .certificate-header h4 {
+        font-size: 12px;
+        padding: 4px 0;
+    }
+
+    .certificate-number {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .certificate-body {
+        margin-top: 35px;
+    }
+
+        .certificate-body p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+    .certificate-footer {
+        margin-top: 40px;
+        font-size: 11px;
+    }
+
+    .logo-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 9px;
+    }
+
+    .report-box {
+        max-width: 13.5cm;
+        margin: 0 auto;
+        border: 1px solid #000;
+        page-break-inside: avoid;
+    }
+}

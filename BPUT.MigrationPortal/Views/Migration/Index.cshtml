@@ -1,0 +1,23 @@
+﻿@* Views/Migration/Index.cshtml *@
+@model BPUT.MigrationPortal.Models.MigrationCertificateVM
+
+<link rel="stylesheet" href="~/css/migration.css" />
+
+<div class="migration-search-wrapper">
+    <h4>Migration Search</h4>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">@Html.ValidationSummary(false)</div>
+    }
+
+    <form asp-controller="Migration" asp-action="Search" method="post" class="search-form">
+        <div class="form-row">
+            <label>Reg No</label>
+            <input type="text" name="regNo" class="form-control" placeholder="Enter Registration No" required />
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

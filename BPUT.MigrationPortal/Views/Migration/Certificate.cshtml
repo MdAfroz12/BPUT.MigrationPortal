@@ -1,0 +1,93 @@
+﻿@* Views/Migration/Certificate.cshtml *@
+@model BPUT.MigrationPortal.Models.MigrationCertificateVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Migration Certificate</title>
+    <link rel="stylesheet" href="~/css/migration.css" />
+</head>
+<body>
+
+    <div class="report-toolbar no-print">
+        <a asp-controller="Migration" asp-action="Index" class="btn btn-secondary">← Back</a>
+
+        <a asp-controller="Migration" asp-action="PrintOnHardcopy" asp-route-regNo="@Model.RegNo" class="btn btn-secondary">Print on Hardcopy</a>
+
+        @if (!Model.IsMigrationIssued)
+        {
+            <button id="printBtn" data-regno="@Model.RegNo" class="btn btn-primary">Print</button>
+        }
+        else
+        {
+            <button onclick="window.print()" class="btn btn-primary">Print</button>
+        }
+    </div>
+
+    <div class="certificate-wrapper">
+        <div class="certificate-box">
+
+            <div class="certificate-header">
+                <div class="logo-circle">BPUT</div>
+                <h2>BIJU PATNAIK UNIVERSITY OF TECHNOLOGY, ODISHA</h2>
+                <h3>ROURKELA</h3>
+                <h4>MIGRATION CERTIFICATE</h4>
+            </div>
+
+            <div class="certificate-number">
+                <strong>@Model.CertificateNo</strong>
+            </div>
+
+            <div class="certificate-body">
+                <p>
+                    <strong>@Model.StudentName?.ToUpper()</strong>, University Registration No
+                    <strong>@Model.RegNo</strong> of <strong>@Model.CollegeName</strong>
+                    is informed that this University has no objection to his / her
+                    migrating to any other University / Institute for further studies.
+                </p>
+            </div>
+
+            <div class="certificate-footer">
+                <div class="office-block">
+                    University Office<br />
+                    Rourkela
+                </div>
+
+                <div class="date-block">
+                    Date&nbsp;&nbsp;
+                    <strong>@Model.MigrationIssueDate?.ToString("dd.MM.yyyy")</strong>
+                </div>
+
+                <div class="signature-block">
+                    <div class="signature-line"></div>
+                    REGISTRAR
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const printBtn = document.getElementById('printBtn');
+        if (printBtn) {
+            printBtn.addEventListener('click', async function () {
+                const regNo = printBtn.getAttribute('data-regno');
+
+                await fetch('/Migration/ConfirmPrint', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ regNo: regNo })
+                });
+
+                window.print();
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@* Views/Migration/Report.cshtml *@
+@model BPUT.MigrationPortal.Models.MigrationCertificateVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Report</title>
+    <link rel="stylesheet" href="~/css/migration.css" />
+</head>
+<body>
+
+    <div class="report-toolbar no-print">
+        <a asp-controller="Migration" asp-action="Index" class="btn btn-secondary">← Back</a>
+    </div>
+
+    <div class="report-box">
+        <h3>Student Report</h3>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">@Html.ValidationSummary(false)</div>
+        }
+
+        <table class="report-table">
+            <tr>
+                <td>Roll No</td>
+                <td>@Model.RollNo</td>
+            </tr>
+            <tr>
+                <td>Student Name</td>
+                <td>@Model.StudentName</td>
+            </tr>
+            <tr>
+                <td>College Name</td>
+                <td>@Model.CollegeName</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <form asp-controller="Migration" asp-action="IssueMigration" method="post" class="issue-form">
+                        <input type="hidden" name="regNo" value="@Model.RegNo" />
+
+                        <label class="checkbox-row">
+                            <input type="checkbox" name="migrationIssue" value="true" required />
+                            Migration Issue
+                        </label>
+
+                        <label class="date-row">
+                            Date of Issue
+                            <input type="date" name="issueDate" class="form-control" required />
+                        </label>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
